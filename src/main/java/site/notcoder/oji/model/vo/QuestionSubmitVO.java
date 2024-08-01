@@ -1,7 +1,7 @@
 package site.notcoder.oji.model.vo;
 
 import lombok.Data;
-import site.notcoder.oji.model.dto.questionsubmit.JudgeInfo;
+import site.notcoder.oji.judge.model.JudgeInfo;
 
 import java.io.Serializable;
 import java.util.Date;

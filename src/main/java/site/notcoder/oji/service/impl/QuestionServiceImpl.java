@@ -1,5 +1,6 @@
 package site.notcoder.oji.service.impl;
 
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -11,16 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 import site.notcoder.oji.common.ErrorCode;
 import site.notcoder.oji.exception.ThrowUtils;
 import site.notcoder.oji.mapper.QuestionMapper;
-import site.notcoder.oji.model.dto.question.JudgeConfig;
-import site.notcoder.oji.model.dto.question.QuestionAddRequest;
-import site.notcoder.oji.model.dto.question.QuestionQueryRequest;
-import site.notcoder.oji.model.dto.question.QuestionUpdateRequest;
+import site.notcoder.oji.model.dto.question.*;
 import site.notcoder.oji.model.entity.Question;
 import site.notcoder.oji.model.entity.User;
 import site.notcoder.oji.model.vo.QuestionAdminVO;
 import site.notcoder.oji.model.vo.QuestionVO;
 import site.notcoder.oji.service.QuestionService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -204,12 +203,18 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
                         false)
         );
 
-
-        questionAdminVO.setJudgeCase(
-                JSONUtil.toBean(JSONUtil.parse(question.getJudgeCase()),
-                        List.class,
-                        false)
+        ArrayList<JudgeCase> judgeCases = new ArrayList<>();
+        List<JSONObject> tempJudgeCases = JSONUtil.toBean(
+                JSONUtil.parse(question.getJudgeCase()),
+                List.class,
+                false
         );
+        tempJudgeCases.forEach(judgeCase -> {
+            judgeCases.add(
+                    JSONUtil.toBean(judgeCase, JudgeCase.class, false)
+            );
+        });
+        questionAdminVO.setJudgeCase(judgeCases);
         return questionAdminVO;
     }
 }

@@ -1,20 +1,24 @@
 package site.notcoder.oji.model.dto.question;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class JudgeConfig implements Serializable {
     /**
      * 时间限制
      */
-    String timeLimit;
+    Long timeLimit;
 
     /**
      * 空间限制
      */
-    String memoryLimit;
+    Long memoryLimit;
 
     private static final long serialVersionUID = 1L;
 }

@@ -3,8 +3,10 @@ package site.notcoder.oji.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import site.notcoder.oji.annotation.AuthCheck;
 import site.notcoder.oji.common.BaseResponse;
 import site.notcoder.oji.common.ResultUtils;
+import site.notcoder.oji.constant.UserConstant;
 import site.notcoder.oji.model.dto.questionsubmit.QuestionSubmitQueryRequest;
 import site.notcoder.oji.model.dto.questionsubmit.QuestionSubmitRequest;
 import site.notcoder.oji.model.entity.QuestionSubmit;
@@ -28,6 +30,7 @@ public class QuestionSubmitController {
     private UserService userService;
 
     @PostMapping("/add")
+    @AuthCheck(mustRole = UserConstant.DEFAULT_ROLE)
     public BaseResponse<Long> doSubmit(
             @RequestBody QuestionSubmitRequest questionSubmitRequest,
             HttpServletRequest request) {
@@ -37,12 +40,14 @@ public class QuestionSubmitController {
     }
 
     @GetMapping("/get")
+    @AuthCheck(mustRole = UserConstant.DEFAULT_ROLE)
     public BaseResponse<QuestionSubmitVO> getQuestionSubmitVO(Long id) {
         QuestionSubmitVO questionSubmitVOById = questionSubmitService.getQuestionSubmitVOById(id);
         return ResultUtils.success(questionSubmitVOById);
     }
 
     @PostMapping("/list")
+    @AuthCheck(mustRole = UserConstant.DEFAULT_ROLE)
     public BaseResponse<Page<QuestionSubmitVO>> getQuestionSubmitVOPage(
             @RequestBody QuestionSubmitQueryRequest questionSubmitQueryRequest) {
         Page<QuestionSubmitVO> questionSubmitVOPage = questionSubmitService.getQuestionSubmitVOPage(questionSubmitQueryRequest);

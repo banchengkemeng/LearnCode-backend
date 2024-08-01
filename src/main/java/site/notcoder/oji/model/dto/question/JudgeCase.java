@@ -1,10 +1,14 @@
 package site.notcoder.oji.model.dto.question;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class JudgeCase implements Serializable {
     /**
      * 输入样例文件地址

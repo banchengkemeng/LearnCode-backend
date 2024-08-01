@@ -1,6 +1,6 @@
 # 公共配置文件
-# @author <a href="https://github.com/liyupi">程序员鱼皮</a>
-# @from <a href="https://yupi.icu">编程导航知识星球</a>
+#  
+#
 spring:
   application:
     name: oji-backend
@@ -101,3 +101,13 @@ knife4j:
         api-rule: package
         api-rule-resources:
           - site.notcoder.oji.controller
+# 代码沙箱配置
+codesandbox:
+  type: remote
+  maxTimeLimit: 1000
+  maxMemoryLimit: 30
+  debug: false
+  docker:
+    host: tcp://192.168.67.129:2375
+    pool:
+      maxTotal: 10

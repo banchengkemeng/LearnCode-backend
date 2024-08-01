@@ -1,5 +1,6 @@
 package site.notcoder.oji.model.enums;
 
+import lombok.Getter;
 import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.Arrays;
@@ -9,6 +10,7 @@ import java.util.stream.Collectors;
 /**
  * 用户提交编程语言枚举
  */
+@Getter
 public enum QuestionSubmitLangEnum {
 
     JAVA("java", "java"),
@@ -52,11 +54,4 @@ public enum QuestionSubmitLangEnum {
         return null;
     }
 
-    public String getValue() {
-        return value;
-    }
-
-    public String getText() {
-        return text;
-    }
 }
